@@ -83,8 +83,8 @@ func Handler(event events.S3Event) (string, error) {
 		}
 		_, err = client.PutObject(params)
 		if err != nil {
-			os.RemoveAll(tempDirName)
 			tempFile.Close()
+			os.RemoveAll(tempDirName)
 			return "", err
 		}
 		tempFile.Close()
