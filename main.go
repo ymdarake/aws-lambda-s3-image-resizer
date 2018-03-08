@@ -65,6 +65,13 @@ func Handler(event events.S3Event) (string, error) {
 	}
 
 	//----------------- 一時ファイルに圧縮データを書き込んでS3に保存 -----------------------------
+	//TODO: TempFileを使用する (S3に上げる際に問題にならなければ in-memory でやる)
+	// tmpfile, err := ioutil.TempFile("", "example")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// defer os.Remove(tmpfile.Name()) // clean up
+	
 	tempDirName, err := createTempDir(originalFilename)
 	if err != nil {
 		return "", err
